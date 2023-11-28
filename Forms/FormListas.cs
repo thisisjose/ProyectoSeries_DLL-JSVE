@@ -19,6 +19,8 @@ namespace ProyectoSeries_DLL_JSVE.Forms
             InitializeComponent();
             cabezaLista = null;
             btnEliminarLista.Click += BtnEliminarLista_Click;
+            btnOrdenarLista.Click += BtnOrdenarLista_Click;
+
         }
 
         //Agregar Lista
@@ -135,6 +137,51 @@ namespace ProyectoSeries_DLL_JSVE.Forms
                     nodoAnterior.siguiente = nodoAEliminar.siguiente;
                 }
             }
+        }
+        private void BtnOrdenarLista_Click(object sender, EventArgs e)
+        {
+            OrdenarLista();
+            MostrarListas();
+        }
+
+        private void OrdenarLista()
+        {
+            if (cabezaLista != null)
+            {
+                Nodo actual = cabezaLista;
+
+                while (actual != null)
+                {
+                    Nodo minimo = EncontrarMinimo(actual);
+                    Swap(actual, minimo);
+                    actual = actual.siguiente;
+                }
+            }
+        }
+
+        private Nodo EncontrarMinimo(Nodo inicio)
+        {
+            Nodo minimo = inicio;
+            Nodo actual = inicio.siguiente;
+
+            while (actual != null)
+            {
+                if (string.Compare(actual.datos.nombre, minimo.datos.nombre) < 0)
+                {
+                    minimo = actual;
+                }
+
+                actual = actual.siguiente;
+            }
+
+            return minimo;
+        }
+
+        private void Swap(Nodo nodo1, Nodo nodo2)
+        {
+            Serie temp = nodo1.datos;
+            nodo1.datos = nodo2.datos;
+            nodo2.datos = temp;
         }
     } 
 }
