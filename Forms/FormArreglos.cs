@@ -29,9 +29,9 @@ namespace ProyectoSeries_DLL_JSVE.Forms
         {
             try
             {
-                if (txtTamaño.Text.Trim() != "")
+                if (txtTamaño.Text != null)
                 {
-                    tamaño = int.Parse(txtTamaño.Text.Trim());
+                    tamaño = int.Parse(txtTamaño.Text);
                     nombres = new string[tamaño];
                     capitulos = new int[tamaño];
                     descripcion = new string[tamaño];
